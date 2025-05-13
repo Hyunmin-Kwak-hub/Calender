@@ -1,4 +1,27 @@
 package com.example.calender.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Getter
+@AllArgsConstructor
 public class Calender {
+
+    @Setter
+    private Long id;
+    @Setter
+    private LocalDateTime date;
+    private String writer;
+    private String todo;
+    private String password;
+
+    public Calender(String writer, String todo, String password) {
+        this.writer = writer;
+        this.todo = todo;
+        this.password = password;
+    }
 }
