@@ -4,7 +4,9 @@ import com.example.calender.dto.CalenderRequestDto;
 import com.example.calender.dto.CalenderResponseDto;
 import com.example.calender.entity.Calender;
 import com.example.calender.repository.CalenderRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -34,6 +36,20 @@ public class CalenderServiceImpl implements CalenderService {
         List<CalenderResponseDto> allCalenders = calenderRepository.findAllCalenders();
 
         return allCalenders;
+    }
+
+    @Override
+    public CalenderResponseDto findCalenderById(Long id) {
+
+        // 식별자가 없을때
+        Calender calender = calenderRepository.findCalenderById(id);
+
+        // null 방지
+        if (calender == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
+        return new CalenderResponseDto(calender);
     }
 
 

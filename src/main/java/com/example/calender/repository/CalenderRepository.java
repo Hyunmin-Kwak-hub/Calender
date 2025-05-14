@@ -10,4 +10,6 @@ public interface CalenderRepository {
     Calender saveCalender(Calender calender);
 
     List<CalenderResponseDto> findAllCalenders();
+
+    Calender findCalenderById(Long id);
 }

@@ -11,5 +11,5 @@ public interface CalenderService {
 
     List<CalenderResponseDto> findAllCalenders();
 
-
+    CalenderResponseDto findCalenderById(Long id);
 }

@@ -44,5 +44,11 @@ public class CalenderRepositoryImpl implements CalenderRepository {
         return allCalenders;
     }
 
+    @Override
+    public Calender findCalenderById(Long id) {
+
+        return calenderList.get(id);
+    }
+
 
 }
