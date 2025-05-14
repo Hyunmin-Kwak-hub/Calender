@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CalenderServiceImpl implements CalenderService {
@@ -48,6 +50,36 @@ public class CalenderServiceImpl implements CalenderService {
         if (calender == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
         }
+
+        return new CalenderResponseDto(calender);
+    }
+
+    @Override
+    public CalenderResponseDto updateCalender(Long id, String writer, String todo, String password) {
+
+        // Calender 조회
+        Calender calender = calenderRepository.findCalenderById(id);
+
+        // Null 방지
+        if (calender == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
+        // 필수값 검증
+        if (writer == null || todo == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The writer and todo are required valuse.");
+        }
+
+//        // 비밀번호 체크
+//        if (calender.getPassword().equals(password)) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is wrong");
+//        }
+
+        // calender 수정일 적용
+        LocalDateTime currentDate = LocalDateTime.now();
+
+        // calender 수정
+        calender.update(currentDate, writer, todo);
 
         return new CalenderResponseDto(calender);
     }

@@ -24,4 +24,10 @@ public class Calender {
         this.todo = todo;
         this.password = password;
     }
+
+    public void update(LocalDateTime date, String writer, String todo) {
+        this.date = date;
+        this.writer = writer;
+        this.todo = todo;
+    }
 }
