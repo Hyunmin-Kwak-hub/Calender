@@ -70,10 +70,10 @@ public class CalenderServiceImpl implements CalenderService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The writer and todo are required valuse.");
         }
 
-//        // 비밀번호 체크
-//        if (calender.getPassword().equals(password)) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is wrong");
-//        }
+        // 비밀번호 체크
+        if (!calender.getPassword().equals(password)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is wrong");
+        }
 
         // calender 수정일 적용
         LocalDateTime currentDate = LocalDateTime.now();
@@ -83,6 +83,4 @@ public class CalenderServiceImpl implements CalenderService {
 
         return new CalenderResponseDto(calender);
     }
-
-
 }
