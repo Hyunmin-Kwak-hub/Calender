@@ -83,4 +83,62 @@ public class CalenderServiceImpl implements CalenderService {
 
         return new CalenderResponseDto(calender);
     }
+
+    @Override
+    public CalenderResponseDto updateWriter(Long id, String writer, String todo, String password) {
+
+        // calender 조회
+        Calender calender = calenderRepository.findCalenderById(id);
+
+        // Null 방지
+        if (calender == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
+        // 필수값 검증
+        if (writer == null || todo != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The writer is required valuse.");
+        }
+
+        // 비밀번호 체크
+        if (!calender.getPassword().equals(password)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is wrong");
+        }
+
+        // calender 수정일 적용
+        LocalDateTime currentDate = LocalDateTime.now();
+
+        calender.updateWriter(currentDate, writer);
+
+        return new CalenderResponseDto(calender);
+    }
+
+    @Override
+    public CalenderResponseDto updateTodo(Long id, String writer, String todo, String password) {
+
+        // calender 조회
+        Calender calender = calenderRepository.findCalenderById(id);
+
+        // Null 방지
+        if (calender == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
+        // 필수값 검증
+        if (writer != null || todo == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The todo is required valuse.");
+        }
+
+        // 비밀번호 체크
+        if (!calender.getPassword().equals(password)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is wrong");
+        }
+
+        // calender 수정일 적용
+        LocalDateTime currentDate = LocalDateTime.now();
+
+        calender.updateTodo(currentDate, todo);
+
+        return new CalenderResponseDto(calender);
+    }
 }

@@ -49,4 +49,24 @@ public class CalenderController {
 
         return new ResponseEntity<>(calenderService.updateCalender(id, requestDto.getWriter(), requestDto.getTodo(), requestDto.getPassword()), HttpStatus.OK);
     }
+
+    // 일정 작성자 수정
+    @PatchMapping("/{id}/writer")
+    public ResponseEntity<CalenderResponseDto> updateWriter(
+            @PathVariable Long id,
+            @RequestBody CalenderRequestDto requestDto
+    ) {
+
+        return new ResponseEntity<>(calenderService.updateWriter(id, requestDto.getWriter(), requestDto.getTodo(), requestDto.getPassword()), HttpStatus.OK);
+    }
+
+
+    // 일정 할일 수정
+    @PatchMapping("/{id}/todo")
+    public ResponseEntity<CalenderResponseDto> updateTodo(
+            @PathVariable Long id,
+            @RequestBody CalenderRequestDto requestDto
+    ) {
+        return new ResponseEntity<>(calenderService.updateTodo(id, requestDto.getWriter(), requestDto.getTodo(), requestDto.getPassword()), HttpStatus.OK);
+    }
 }

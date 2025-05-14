@@ -15,4 +15,8 @@ public interface CalenderService {
     CalenderResponseDto findCalenderById(Long id);
 
     CalenderResponseDto updateCalender(Long id, String writer, String todo, String password);
+
+    CalenderResponseDto updateWriter(Long id, String writer, String todo, String password);
+
+    CalenderResponseDto updateTodo(Long id, String writer, String todo, String password);
 }

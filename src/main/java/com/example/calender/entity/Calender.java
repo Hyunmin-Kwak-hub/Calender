@@ -30,4 +30,14 @@ public class Calender {
         this.writer = writer;
         this.todo = todo;
     }
+
+    public void updateWriter(LocalDateTime date, String writer) {
+        this.date = date;
+        this.writer = writer;
+    }
+
+    public void updateTodo(LocalDateTime date, String todo) {
+        this.date = date;
+        this.todo = todo;
+    }
 }
