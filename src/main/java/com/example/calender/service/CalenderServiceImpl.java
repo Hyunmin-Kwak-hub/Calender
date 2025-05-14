@@ -141,4 +141,18 @@ public class CalenderServiceImpl implements CalenderService {
 
         return new CalenderResponseDto(calender);
     }
+
+    @Override
+    public void deleteCalender(Long id) {
+
+        // calender 조회
+        Calender calender = calenderRepository.findCalenderById(id);
+
+        // Null 방지
+        if (calender == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
+        calenderRepository.deleteCalender(id);
+    }
 }

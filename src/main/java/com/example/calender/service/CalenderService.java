@@ -19,4 +19,6 @@ public interface CalenderService {
     CalenderResponseDto updateWriter(Long id, String writer, String todo, String password);
 
     CalenderResponseDto updateTodo(Long id, String writer, String todo, String password);
+
+    void deleteCalender(Long id);
 }

@@ -50,5 +50,8 @@ public class CalenderRepositoryImpl implements CalenderRepository {
         return calenderList.get(id);
     }
 
-
+    @Override
+    public void deleteCalender(Long id) {
+        calenderList.remove(id);
+    }
 }

@@ -60,7 +60,6 @@ public class CalenderController {
         return new ResponseEntity<>(calenderService.updateWriter(id, requestDto.getWriter(), requestDto.getTodo(), requestDto.getPassword()), HttpStatus.OK);
     }
 
-
     // 일정 할일 수정
     @PatchMapping("/{id}/todo")
     public ResponseEntity<CalenderResponseDto> updateTodo(
@@ -68,5 +67,14 @@ public class CalenderController {
             @RequestBody CalenderRequestDto requestDto
     ) {
         return new ResponseEntity<>(calenderService.updateTodo(id, requestDto.getWriter(), requestDto.getTodo(), requestDto.getPassword()), HttpStatus.OK);
+    }
+
+    // 일정 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCalender(@PathVariable Long id) {
+        calenderService.deleteCalender(id);
+
+        // 성공했을때
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

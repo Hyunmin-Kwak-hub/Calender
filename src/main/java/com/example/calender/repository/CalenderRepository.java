@@ -12,4 +12,6 @@ public interface CalenderRepository {
     List<CalenderResponseDto> findAllCalenders();
 
     Calender findCalenderById(Long id);
+
+    void deleteCalender(Long id);
 }
