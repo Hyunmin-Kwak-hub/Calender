@@ -6,6 +6,8 @@ import com.example.calender.entity.Calender;
 import com.example.calender.repository.CalenderRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CalenderServiceImpl implements CalenderService {
 
@@ -23,6 +25,15 @@ public class CalenderServiceImpl implements CalenderService {
         Calender saveCalender = calenderRepository.saveCalender(calender);
 
         return new CalenderResponseDto(saveCalender);
+    }
+
+    @Override
+    public List<CalenderResponseDto> findAllCalenders() {
+
+        // 전체조회
+        List<CalenderResponseDto> allCalenders = calenderRepository.findAllCalenders();
+
+        return allCalenders;
     }
 
 

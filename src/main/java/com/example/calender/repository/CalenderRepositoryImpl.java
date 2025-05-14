@@ -1,13 +1,12 @@
 package com.example.calender.repository;
 
+import com.example.calender.dto.CalenderResponseDto;
 import com.example.calender.entity.Calender;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class CalenderRepositoryImpl implements CalenderRepository {
@@ -28,6 +27,21 @@ public class CalenderRepositoryImpl implements CalenderRepository {
         calenderList.put(calenderId, calender);
 
         return calender;
+    }
+
+    @Override
+    public List<CalenderResponseDto> findAllCalenders() {
+
+        // init List
+        List<CalenderResponseDto> allCalenders = new ArrayList<>();
+
+        // HashMap<Calender> -> List<CalenderResponseDto>
+        for (Calender calender : calenderList.values()) {
+            CalenderResponseDto responseDto = new CalenderResponseDto(calender);
+            allCalenders.add(responseDto);
+        }
+
+        return allCalenders;
     }
 
 
